@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_test_even_bus"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.frame.huxh.evenbusdemo.evenbus.TestEvenBusActivity">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_receive"
+        android:text="我要发送消息了"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_content"
+        android:layout_below="@+id/btn_receive"
+        />
+
+    <Button
+        android:id="@+id/start_srvice_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动并绑定服务"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/unregist_srvice_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注销服务"
+        android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/send_meaasge_service_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="向服务发消息"
+        android:layout_marginBottom="16dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/service_message"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:layout_below="@+id/text_content"
+        android:id="@+id/testListViewPaper"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+    </android.support.v4.view.ViewPager>
+
+
+
+
+</LinearLayout>
