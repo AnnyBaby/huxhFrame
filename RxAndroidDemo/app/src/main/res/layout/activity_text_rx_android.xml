@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_text_rx_android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.frame.huxh.rxandroiddemo.rxAndroid.TextRxAndroidActivity">
+
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button1"
+        android:text="第一种方式CreateObserver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickButton"/>
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickButton2"
+        android:text="第二种方式CreateObserver"
+        />
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button3"
+        android:text="filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button4"
+        android:text="from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button5"
+        android:text="just"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button6"
+        android:text="rang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:layout_margin="8dp"
+        android:id="@+id/button7"
+        android:text="interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
