@@ -7,19 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.frame.huxh.mvpdemo.R;
 import com.frame.huxh.mvpdemo.bean.ActicleBean;
 import com.frame.huxh.mvpdemo.interfacepkg.RefreshViewInterface;
+import com.frame.huxh.mvpdemo.presenter.ArticlePresenter;
 import com.frame.huxh.mvpdemo.pull.BaseViewHolder;
 import com.frame.huxh.mvpdemo.pull.PullRecycler;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class ArticleActivity extends BaseListActivity<ActicleBean> implements RefreshViewInterface<ActicleBean>{
+public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> implements RefreshViewInterface<ActicleBean>{
     private int page = 1;
+    private ActicleBean mActicleBean;
+    private ArticlePresenter mArticlePresenter = new ArticlePresenter(this);
 
 
 //    @Override
@@ -47,6 +50,11 @@ public class ArticleActivity extends BaseListActivity<ActicleBean> implements Re
     }
 
     @Override
+    protected void setUpView(int recycleViewId) {
+        super.setUpView(R.id.article_listview);
+    }
+
+    @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_layout_item, parent, false);
         return new SampleViewHolder(view);
@@ -62,23 +70,29 @@ public class ArticleActivity extends BaseListActivity<ActicleBean> implements Re
             page = 1;
         }
 
+        mArticlePresenter.fetchArticles();
         //请求数据
+
     }
 
     @Override
-    public void showArticles(List<ActicleBean> list) {
-
+    public void showData(ActicleBean acticleBean) {
+      this.mActicleBean = acticleBean;
+        mDataList.clear();
+        mDataList.addAll(acticleBean.getOthers());
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void showLoading() {
-
+   recycler.setRefreshing();
     }
 
     @Override
     public void hideLoading() {
-
+   recycler.onRefreshCompleted();
     }
+
 
 
     class SampleViewHolder extends BaseViewHolder {
@@ -94,15 +108,15 @@ public class ArticleActivity extends BaseListActivity<ActicleBean> implements Re
 
         @Override
         public void onBindViewHolder(int position) {
-//            List<ActicleBean.StoriesBean> StoriesBean = mDataList.get(0).getStories();
-//            ActicleBean.StoriesBean bean = StoriesBean.get(position);
-//            mSampleListItemLabel.setText(bean.getTitle());
-//            Glide.with(mSampleListItemImg.getContext())
-//                    .load(bean.getImages().get(0))
-//                    .centerCrop()
-//                    .placeholder(R.color.app_primary_color)
-//                    .crossFade()
-//                    .into(mSampleListItemImg);
+            ActicleBean.OthersBean bean = mDataList.get(position);
+
+            mSampleListItemLabel.setText(bean.getDescription());
+            Glide.with(mSampleListItemImg.getContext())
+                    .load(bean.getThumbnail())
+                    .centerCrop()
+                    .placeholder(R.color.app_primary_color)
+                    .crossFade()
+                    .into(mSampleListItemImg);
         }
 
         @Override

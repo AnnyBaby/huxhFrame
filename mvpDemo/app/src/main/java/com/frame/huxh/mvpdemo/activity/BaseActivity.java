@@ -22,19 +22,20 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
     public static final int MODE_NONE = 2;
     public static final int MODE_HOME = 3;
     public int mLayoutId;
+    public int recycleViewId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUpContentView(mLayoutId);
-        setUpView();
+        setUpView(recycleViewId);
         setUpData();
     }
 
     protected abstract void setUpContentView(int layoutId);
 
-    protected abstract void setUpView();
+    protected abstract void setUpView(int recycleViewId);
 
     protected abstract void setUpData();
 

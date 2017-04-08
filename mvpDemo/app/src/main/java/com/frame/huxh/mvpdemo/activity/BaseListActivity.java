@@ -11,7 +11,7 @@ import com.frame.huxh.mvpdemo.pull.PullRecycler;
 import com.frame.huxh.mvpdemo.pull.layoutmanager.ILayoutManager;
 import com.frame.huxh.mvpdemo.pull.layoutmanager.MyLinearLayoutManager;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public abstract class BaseListActivity<T> extends BaseActivity implements PullRecycler.OnRecyclerRefreshListener {
     protected BaseListAdapter adapter;
-    protected ArrayList<T> mDataList;
+    protected List<T> mDataList;
     protected PullRecycler recycler;
 
     @Override
@@ -29,8 +29,8 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullRe
     }
 
     @Override
-    protected void setUpView() {
-        recycler = (PullRecycler) findViewById(R.id.pullRecycler);
+    protected void setUpView(int recycleViewId) {
+        recycler = (PullRecycler) findViewById(recycleViewId);
     }
 
     @Override

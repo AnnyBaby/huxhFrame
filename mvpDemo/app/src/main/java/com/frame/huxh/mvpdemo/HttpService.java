@@ -15,7 +15,6 @@ import org.reactivestreams.Subscription;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,16 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HttpService {
-    public static  void main(String[] args)  throws Exception{
-        requsetArticleList();
-    }
-    public static void requsetArticleList(){
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
 
+    public static void requsetArticleList(Subscriber<ActicleBean> subscriber){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://news-at.zhihu.com/api/7/themes/")
+                .baseUrl("http://news-at.zhihu.com/api/7/")
                 .addConverterFactory(GsonConverterFactory.create())//这个方法是利用gson网络解析json字符串
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())// 添加RxJava2的适配器支持
                 .build();
@@ -42,27 +35,7 @@ public class HttpService {
         api.getResult()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ActicleBean>() {
-                    @Override
-                    public void onSubscribe(Subscription s) {
-                        s.request(Long.MAX_VALUE);
-                    }
-
-                    @Override
-                    public void onNext(@NonNull ActicleBean acticleBean) {
-                        Log.i("HttpService",acticleBean.toString());
-                    }
-
-                    @Override
-                    public void onError(Throwable t) {
-                        Log.e("HttpService",t.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.e("HttpService","onComplete");
-                    }
-                });
+                .subscribe(subscriber);
     }
 
     public static void requsetTest(){
