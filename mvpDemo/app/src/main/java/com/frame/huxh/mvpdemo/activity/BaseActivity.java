@@ -10,10 +10,6 @@ import android.widget.TextView;
 import com.frame.huxh.mvpdemo.R;
 
 
-/**
- * Created by Stay on 2/2/16.
- * Powered by www.stay4it.com
- */
 public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
     protected Toolbar toolbar;
     protected TextView toolbar_title;
@@ -21,21 +17,20 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
     public static final int MODE_DRAWER = 1;
     public static final int MODE_NONE = 2;
     public static final int MODE_HOME = 3;
-    public int mLayoutId;
     public int recycleViewId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUpContentView(mLayoutId);
-        setUpView(recycleViewId);
+        setUpContentView();
+        setUpView();
         setUpData();
     }
 
-    protected abstract void setUpContentView(int layoutId);
+    protected abstract void setUpContentView();
 
-    protected abstract void setUpView(int recycleViewId);
+    protected abstract void setUpView();
 
     protected abstract void setUpData();
 
@@ -66,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
             toolbar_title = (TextView) findViewById(R.id.toolbar_title);
 
             if (mode == MODE_BACK) {
-                toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
+                toolbar.setNavigationIcon(R.mipmap.ic_toolbar_back);
             }
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,6 +89,11 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
         if (titleResId > 0 && toolbar_title != null) {
             toolbar_title.setText(titleResId);
         }
+    }
+
+    protected void setUpTitle(String title) {
+
+            toolbar_title.setText(title);
     }
 
     protected void onNavigationBtnClicked() {

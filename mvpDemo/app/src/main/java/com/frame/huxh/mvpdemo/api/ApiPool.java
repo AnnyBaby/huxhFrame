@@ -10,5 +10,7 @@ public class ApiPool {
 
     public static final  String sCommonDetail= "http://daily.zhihu.com/story/";
 
+    public static final String sThemeUrl  ="http://news-at.zhihu.com/api/4/";
+
 
 }

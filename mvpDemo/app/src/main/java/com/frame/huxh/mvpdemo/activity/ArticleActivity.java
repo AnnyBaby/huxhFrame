@@ -1,5 +1,6 @@
 package com.frame.huxh.mvpdemo.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,9 @@ import com.frame.huxh.mvpdemo.interfacepkg.RefreshViewInterface;
 import com.frame.huxh.mvpdemo.presenter.ArticlePresenter;
 import com.frame.huxh.mvpdemo.pull.BaseViewHolder;
 import com.frame.huxh.mvpdemo.pull.PullRecycler;
+import com.frame.huxh.mvpdemo.rxbus.RxBus;
 
 import java.util.ArrayList;
-
-import butterknife.ButterKnife;
 
 public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> implements RefreshViewInterface<ActicleBean>{
     private int page = 1;
@@ -29,14 +29,16 @@ public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> im
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_article);
-//        ButterKnife.bind(this);
+//
+//        super.setUpTitle(R.string.zhihu_daily);
+//        super.setUpView();
 //    }
 
-    @Override
-    protected void setUpContentView(int layoutId) {
-        super.setUpContentView(R.layout.activity_article);
-        ButterKnife.bind(this);
-    }
+//    @Override
+//    protected void setUpContentView(int layoutId) {
+//        super.setUpContentView(R.layout.activity_article);
+//        ButterKnife.bind(this);
+//    }
 
     @Override
     protected void setUpTitle(int titleResId) {
@@ -49,10 +51,10 @@ public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> im
         recycler.setRefreshing();
     }
 
-    @Override
-    protected void setUpView(int recycleViewId) {
-        super.setUpView(R.id.article_listview);
-    }
+//    @Override
+//    protected void setUpView(int recycleViewId) {
+//        super.setUpView(R.id.article_listview);
+//    }
 
     @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
@@ -99,17 +101,19 @@ public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> im
 
         ImageView mSampleListItemImg;
         TextView mSampleListItemLabel;
+        TextView mTvDaily;
 
         public SampleViewHolder(View itemView) {
             super(itemView);
             mSampleListItemLabel = (TextView) itemView.findViewById(R.id.tv_context);
             mSampleListItemImg = (ImageView) itemView.findViewById(R.id.img_article);
+            mTvDaily = (TextView) itemView.findViewById(R.id.tv_dailytype);
         }
 
         @Override
         public void onBindViewHolder(int position) {
             ActicleBean.OthersBean bean = mDataList.get(position);
-
+            mTvDaily.setText(bean.getName());
             mSampleListItemLabel.setText(bean.getDescription());
             Glide.with(mSampleListItemImg.getContext())
                     .load(bean.getThumbnail())
@@ -121,7 +125,10 @@ public class ArticleActivity extends BaseListActivity<ActicleBean.OthersBean> im
 
         @Override
         public void onItemClick(View view, int position) {
-
+//            ToastUtils.toast(ArticleActivity.this,"position"+position);
+            ActicleBean.OthersBean bean = mDataList.get(position);
+            RxBus.get().post(bean);
+            startActivity(new Intent(ArticleActivity.this,ActicleListActivity.class));
         }
 
     }

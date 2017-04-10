@@ -38,7 +38,7 @@ public class TestActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.test_btn:
                 ArticleModel articleModel = new ArticleModel();
-                articleModel.requestArticleData(new Subscriber<ActicleBean>(){
+                articleModel.requestData(new Subscriber<ActicleBean>(){
                     @Override
                     public void onSubscribe(Subscription s) {
                         s.request(Long.MAX_VALUE);

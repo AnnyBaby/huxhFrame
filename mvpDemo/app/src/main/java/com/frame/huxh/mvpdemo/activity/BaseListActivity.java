@@ -13,24 +13,19 @@ import com.frame.huxh.mvpdemo.pull.layoutmanager.MyLinearLayoutManager;
 
 import java.util.List;
 
-
-/**
- * Created by Stay on 25/2/16.
- * Powered by www.stay4it.com
- */
 public abstract class BaseListActivity<T> extends BaseActivity implements PullRecycler.OnRecyclerRefreshListener {
     protected BaseListAdapter adapter;
     protected List<T> mDataList;
     protected PullRecycler recycler;
 
     @Override
-    protected void setUpContentView(int layoutId) {
-        setContentView(layoutId, -1);
+    protected void setUpContentView() {
+        setContentView(R.layout.activity_base_list, -1);
     }
 
     @Override
-    protected void setUpView(int recycleViewId) {
-        recycler = (PullRecycler) findViewById(recycleViewId);
+    protected void setUpView() {
+        recycler = (PullRecycler) findViewById(R.id.pullRecycler);
     }
 
     @Override

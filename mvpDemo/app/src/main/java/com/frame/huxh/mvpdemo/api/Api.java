@@ -2,6 +2,7 @@ package com.frame.huxh.mvpdemo.api;
 
 import com.frame.huxh.mvpdemo.bean.ActicleBean;
 import com.frame.huxh.mvpdemo.bean.AllBankListBean;
+import com.frame.huxh.mvpdemo.bean.ArticleListBean;
 
 import java.util.List;
 
@@ -28,4 +29,9 @@ public interface Api {
 
     @POST("queryBankList.php")
     Flowable<List<AllBankListBean>> getText();
+
+    @GET("theme/{id}")
+    Flowable<ArticleListBean> getThemeList(
+            @Query("id") String id
+    );
 }

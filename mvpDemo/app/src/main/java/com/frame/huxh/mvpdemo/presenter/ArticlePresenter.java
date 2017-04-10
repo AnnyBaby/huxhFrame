@@ -26,7 +26,7 @@ public class ArticlePresenter {
     }
 
     public void fetchArticles(){
-        mIacticleModel.requestArticleData(new Subscriber<ActicleBean>() {
+        mIacticleModel.requestData(new Subscriber<ActicleBean>() {
             @Override
             public void onSubscribe(Subscription s) {
                 s.request(Long.MAX_VALUE);

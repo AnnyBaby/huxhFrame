@@ -11,10 +11,6 @@ import com.frame.huxh.mvpdemo.R;
 import com.frame.huxh.mvpdemo.pull.layoutmanager.ILayoutManager;
 
 
-/**
- * Created by Stay on 5/3/16.
- * Powered by www.stay4it.com
- */
 public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRefreshListener {
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
